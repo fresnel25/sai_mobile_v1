@@ -1,7 +1,8 @@
-import { Image, SafeAreaView, Text, View } from "react-native";
+import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
 import Button from "./Button/Button";
+import Colors from "../Constants/Color";
 
-function Home() {
+const Home = ({navigation}) => {
   return (
     <SafeAreaView
       style={{
@@ -15,10 +16,10 @@ function Home() {
         }}
       >
         <View
-            style={{
-                flex: 1,
-                alignItems: "center",
-              }}
+          style={{
+            flex: 1,
+            alignItems: "center",
+          }}
         >
           <Image
             source={require("../../assets/sai-i-lama-logo.png")}
@@ -26,7 +27,7 @@ function Home() {
               height: 100,
               width: 100,
               position: "absolute",
-              top: 20,
+              top: 60,
             }}
           ></Image>
         </View>
@@ -57,7 +58,39 @@ function Home() {
           >
             saï i lama
           </Text>
-          <Button title="Nous Rejoindre" />
+          <Button
+            title="Nous Rejoindre"
+            onPress={() => navigation.navigate("Register")}
+          />
+
+          <View
+            style={{
+              flexDirection: "row",
+              marginTop: 80,
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 16,
+                color: Colors.primary,
+              }}
+            >
+              Avez-vous déja un compte ?
+            </Text>
+            <Pressable onPress={() => navigation.navigate("Login")}>
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: Colors.primary,
+                  fontWeight: "bold",
+                  marginLeft:4
+                }}
+              >
+                Login
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </SafeAreaView>
