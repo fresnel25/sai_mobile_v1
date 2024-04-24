@@ -8,8 +8,8 @@ import {
 } from "react-native";
 import React from "react";
 import { useState } from "react";
-import FormTextField from "../Components/Formulaire/FormTextField";
-import axios from "../Utils/axios";
+import FormTextField from "../../Components/Input/FormTextField";
+import axios from "../../Utils/axios";
 import * as SecureStore from "expo-secure-store";
 
 
@@ -30,7 +30,7 @@ export default function LoginPage({navigation}) {
       if(data.status) {
         console.log("res", data);
         const { token, user } = data;
-        // await SecureStore.setItemAsync("token", token);
+        await SecureStore.setItemAsync("token", token);
         navigation.navigate("Home",{accessToken:token, user});
       }
       else{

@@ -1,6 +1,6 @@
 import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
 import Button from "./Button/Button";
-import Colors from "../Constants/Color";
+import Colors from "../../Constants/Color";
 
 const Home = ({navigation}) => {
   return (
