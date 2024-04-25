@@ -7,6 +7,7 @@ const Home = ({ navigation }) => {
 const {user} = useContext(AuthContext);
 const handleLogout = async() => {
  await logout();
+ navigation.navigate("Welcome");
 }
   return (
     <SafeAreaView

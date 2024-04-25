@@ -23,25 +23,25 @@ export const loadUser = async () => {
 };
 
 export const logout = async () => {
-    // try {
-    //     const token = await getToken();
-    //     console.log("logging out " + token);
+    try {
+        const token = await getToken();
+        console.log("logging out " + token);
 
-    //     // Call the logout API endpoint
-    //     await axios.post("api/v1/users/logout", {}, {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`,
-    //         },
-    //     });
+        // Call the logout API endpoint
+        await axios.post("api/v1/users/logout", {}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
-    //     // Clear the token by setting it to null
-    //     await setToken(null);
-    //     console.log("Token cleared");
+        // Clear the token by setting it to null
+        await setToken(null);
+        console.log("Token cleared");
 
-    // } catch (error) {
-    //     console.error("Error logging out:", error);
-    // }
-    await SecureStore.deleteItemAsync("token");
+    } catch (error) {
+        console.error("Error logging out:", error);
+    }
+
     
     console.log(getToken());
 }

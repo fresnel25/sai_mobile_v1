@@ -39,7 +39,7 @@ export default function App() {
           {user ? (
             <Stack.Screen name="Home" component={Home} />
           ) : (
-            <Stack.Screen name="Welcome" component={LoginScreen} />
+            <Stack.Screen name="Welcome" component={Welcome} />
           )}
           {/* <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Home" component={Home} />
