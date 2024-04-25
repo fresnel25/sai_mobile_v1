@@ -1,8 +1,9 @@
 import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
-import Button from "./Button/Button";
-import Colors from "../Constants/Color";
+import Button from "../Button";
+import Colors from "../../Constants/Color";
+import ImageURL from "../../Constants/Image";
 
-const Home = ({navigation}) => {
+const Welcome = ({navigation}) => {
   return (
     <SafeAreaView
       style={{
@@ -22,7 +23,7 @@ const Home = ({navigation}) => {
           }}
         >
           <Image
-            source={require("../../assets/sai-i-lama-logo.png")}
+            source={ImageURL.saiILamaLogo}
             style={{
               height: 100,
               width: 100,
@@ -97,4 +98,4 @@ const Home = ({navigation}) => {
   );
 }
 
-export default Home;
+export default Welcome;
