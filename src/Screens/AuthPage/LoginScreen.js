@@ -9,41 +9,19 @@ import {
 import React from "react";
 import { useState } from "react";
 import FormTextField from "../../Components/Input/FormTextField";
-import axios from "../../Utils/axios";
-import * as SecureStore from "expo-secure-store";
+import { loadUser, login } from "../../Services/AuthService";
 
-
-
-export default function LoginPage({navigation}) {
-    
-  const [email, setEmail] = useState("ngaleufresnel@gmail.com");
-  const [password, setPassword] = useState("25576738");
+const LoginScreen =({ navigation }) =>{
+  const [email, setEmail] = useState("hote1@gmail.com");
+  const [password, setPassword] = useState("hote1");
   const [errors, setErrors] = useState({});
 
   const handleLogin = async () => {
     setErrors({});
-    try {
-      const { data } = await axios.post("api/users/login", {
-        email,
-        password,
-      });
-      if(data.status) {
-        console.log("res", data);
-        const { token, user } = data;
-        await SecureStore.setItemAsync("token", token);
-        navigation.navigate("Home",{accessToken:token, user});
-      }
-      else{
-        alert("login error");
-      }
-      
-    } catch (e) {
-      if (e.response?.status === 422) {
-        setErrors(e.response.data.errors);
-      } else {
-        console.error(e); 
-      }
-    }
+
+      await login({ email, password });
+      const user = await loadUser();
+      navigation.navigate("Home", user);
   };
 
   return (
@@ -68,3 +46,4 @@ export default function LoginPage({navigation}) {
     </SafeAreaView>
   );
 }
+export default LoginScreen;
