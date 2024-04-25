@@ -1,14 +1,18 @@
 import { useContext } from "react";
-import { Button, Image, Pressable, SafeAreaView, Text, View } from "react-native";
+import {
+  Button,
+  SafeAreaView,
+  Text,
+} from "react-native";
 import AuthContext from "../../Context/AuthContext";
 import { logout } from "../../Services/AuthService";
 
-const Home = ({ navigation }) => {
-const {user} = useContext(AuthContext);
-const handleLogout = async() => {
- await logout();
- navigation.navigate("Welcome");
-}
+const Home = () => {
+  const { user, setUser } = useContext(AuthContext);
+  const handleLogout = async () => {
+    await logout();
+    setUser(null);
+  };
   return (
     <SafeAreaView
       style={{
