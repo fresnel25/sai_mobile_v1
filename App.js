@@ -1,12 +1,16 @@
+import { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import { loadUser } from "./src/Services/AuthService";
+import AuthContext from "./src/Context/AuthContext";
+
 import { Welcome, Home } from "./src/Components/_Layout";
+
 import RegisterScreen from "./src/Screens/AuthPage/RegisterScreen";
 import LoginScreen from "./src/Screens/AuthPage/LoginScreen";
-import AuthContext from "./src/Context/AuthContext";
-import { loadUser } from "./src/Services/AuthService";
-import { useState, useEffect } from "react";
 import SplashScreen from "./src/Screens/OnBordingPage/SplashScreen";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -29,22 +33,24 @@ export default function App() {
   }, []);
 
   if (status === "loading") {
-    return null; 
+    return <SplashScreen />;
   }
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Navigator>
           {user ? (
             <Stack.Screen name="Home" component={Home} />
           ) : (
-            <Stack.Screen name="Welcome" component={Welcome} />
+            <Stack.Screen
+              name="Welcome"
+              component={Welcome}
+              options={{ headerShown: false }}
+            />
           )}
-          {/* <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Welcome" component={Welcome} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
