@@ -30,7 +30,7 @@ const Welcome = ({navigation}) => {
               position: "absolute",
               top: 60,
             }}
-          ></Image>
+          />
         </View>
 
         {/* Content */}
@@ -62,6 +62,7 @@ const Welcome = ({navigation}) => {
           <Button
             title="Nous Rejoindre"
             onPress={() => navigation.navigate("Register")}
+            textColor={Colors.white}
           />
 
           <View

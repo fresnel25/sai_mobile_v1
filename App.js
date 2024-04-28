@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import { loadUser } from "./src/Services/AuthService";
 import AuthContext from "./src/Context/AuthContext";
 
@@ -23,7 +22,7 @@ export default function App() {
         const user = await loadUser();
         setUser(user);
       } catch (error) {
-        console.error("Error loading user:", error);
+        console.warn("Error loading user:", error);
       } finally {
         setStatus("idle");
       }
@@ -39,7 +38,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Home">
           {user ? (
             <Stack.Screen name="Home" component={Home} />
           ) : (
@@ -49,8 +48,12 @@ export default function App() {
               options={{ headerShown: false }}
             />
           )}
+          {/*  Auth screens */}
+          <Stack.Group screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
+          </Stack.Group>
+          
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
