@@ -6,12 +6,12 @@ export const loginUser = async (credentials) => {
 }
 export const registerUser = async (userData) => {
         const { data } = await axios.post("api/users/register", userData);
-        if (!data || !data.user || !data.token) {
+        if (!data || !data.token) {
             throw new Error("Invalid response from server.");
           }
           
         await setToken(data.token);
-        return data.user,data.message;
+        return data.message;
 };
 export const loadUser = async () => {
     try {
@@ -31,7 +31,7 @@ export const logout = async () => {
     try {
         await axios.post("api/v1/users/logout", {});
         await setToken(null);
-        console.info("Token cleared");
+        console.info("LOGOUT: Token cleared");
     } catch (error) {
         console.error("Error logging out:", error);
     }

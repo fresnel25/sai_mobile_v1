@@ -15,7 +15,6 @@ import { Controller, useForm } from "react-hook-form";
 import Toast from "react-native-toast-message";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { styles } from "./style";
-import * as z from "zod";
 import { loginSchema } from "../../Utils/validation";
 
 const LoginScreen = ({ navigation }) => {
@@ -27,30 +26,15 @@ const LoginScreen = ({ navigation }) => {
     control,
     handleSubmit,
     formState: { errors },
-    setValue,
-  } = useForm({
-    resolver: z.nativeSchema,
-    defaultValues: {
-      email: "hote1@gmail.com",
-      password: "hote1",
-    },
-  });
-
-  useEffect(() => {
-    setValue("email", "hote1@gmail.com");
-    setValue("password", "hote1");
-  }, [setValue]);
+  } = useForm();
 
   const handleLogin = async (data) => {
     try {
       setLoading(true);
-
       const validatedData = loginSchema.parse(data);
-      console.log("Validated data:", validatedData);
-
       await loginUser(validatedData);
       const user = await loadUser();
-      console.info("USER DATA LOGIN: ", user);
+      console.info(`USER DATA LOGIN: ${user.name}`, user);
       setUser(user);
 
       Toast.show({
@@ -60,7 +44,7 @@ const LoginScreen = ({ navigation }) => {
       });
       navigation.navigate("Home");
     } catch (error) {
-      console.error("Error logging in:", error);
+      console.error(`Error logging in:${user.name}`, error);
 
       if (error instanceof z.ZodError) {
         Toast.show({

@@ -5,9 +5,14 @@ import {
   Text,
 } from "react-native";
 import AuthContext from "../../Context/AuthContext";
+import { logout } from "../../Services/AuthService";
 
-const Home = () => {
-  const { user} = useContext(AuthContext);
+const Profile = () => {
+  const { user, setUser } = useContext(AuthContext);
+  const handleLogout = async () => {
+    await logout();
+    setUser(null);
+  };
   return (
     <SafeAreaView
       style={{
@@ -17,8 +22,9 @@ const Home = () => {
       }}
     >
       <Text>Welcome {user.name}</Text>
+      <Button title="Logout" onPress={handleLogout} />
     </SafeAreaView>
   );
 };
 
-export default Home;
+export default Profile;

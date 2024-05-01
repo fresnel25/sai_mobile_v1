@@ -32,10 +32,10 @@ const RegisterScreen = ({ navigation }) => {
   } = useForm();
 
   useEffect(() => {
-    setValue("name", "John Doe");
-    setValue("email", "johndoe@example.com");
+    setValue("name", "menoc61");
+    setValue("email", "meno@example.com");
     setValue("password", "momeni@c61");
-    setValue("phone", 1234567890);
+    setValue("phone", "1234567890");
     setValue("gender", "Male");
     setValue("birthday", "2000-01-01");
     setValue("address", "123 Main St");
@@ -45,7 +45,7 @@ const RegisterScreen = ({ navigation }) => {
       setLoading(true);
       const validatedData = registerSchema.parse(formData);
       const user = await registerUser(validatedData);
-      console.info("USER DATA REGISTER: ", user);
+      console.info(`USER DATA REGISTER: ${user.name}`, user);
       setUser(user);
       Toast.show({
         type: "success",
@@ -54,7 +54,7 @@ const RegisterScreen = ({ navigation }) => {
       });
       navigation.navigate("Home");
     } catch (error) {
-      console.error("Registration failed:", error.message);
+      console.error(`Registration failed: ${user.name}`, error.message);
       Toast.show({
         type: "error",
         text1: "Error",
