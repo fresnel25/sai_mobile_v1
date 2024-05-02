@@ -18,6 +18,7 @@ import Button from "../../Components/Button";
 import Colors from "../../Constants/Color";
 import ImageURL from "../../Constants/Image";
 import { styles } from "./style";
+import Routes from "../../Constants/Routes";
 const RegisterScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -27,19 +28,7 @@ const RegisterScreen = ({ navigation }) => {
     control,
     handleSubmit,
     formState: { errors },
-    // Add setValue from useForm
-    setValue,
   } = useForm();
-
-  useEffect(() => {
-    setValue("name", "menoc61");
-    setValue("email", "meno@example.com");
-    setValue("password", "momeni@c61");
-    setValue("phone", "1234567890");
-    setValue("gender", "Male");
-    setValue("birthday", "2000-01-01");
-    setValue("address", "123 Main St");
-  }, [setValue]);
   const handleRegister = async (formData) => {
     try {
       setLoading(true);
@@ -52,7 +41,7 @@ const RegisterScreen = ({ navigation }) => {
         text1: "Success",
         text2: "Registration successful"+ user.message ,
       });
-      navigation.navigate("Home");
+      navigation.navigate(Routes.Tab);
     } catch (error) {
       console.error(`Registration failed: ${user.name}`, error.message);
       Toast.show({

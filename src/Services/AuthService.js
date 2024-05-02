@@ -3,6 +3,7 @@ import { setToken } from "./TokenService";
 export const loginUser = async (credentials) => {
     const { data } = await axios.post("api/users/login", credentials);
     await setToken(data.token);
+    console.info("LOGIN: Token set" + data.token);
 }
 export const registerUser = async (userData) => {
         const { data } = await axios.post("api/users/register", userData);

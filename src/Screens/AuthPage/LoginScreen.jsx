@@ -16,6 +16,7 @@ import Toast from "react-native-toast-message";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { styles } from "./style";
 import { loginSchema } from "../../Utils/validation";
+import Routes from "../../Constants/Routes";
 
 const LoginScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -42,7 +43,7 @@ const LoginScreen = ({ navigation }) => {
         text1: "Success",
         text2: "Logged in successfully!",
       });
-      navigation.navigate("Home");
+      navigation.navigate(Routes.Tab);
     } catch (error) {
       console.error(`Error logging in:${user.name}`, error);
 

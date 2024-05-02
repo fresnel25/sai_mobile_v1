@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: Colors.grey,
+    borderColor: Colors.gray,
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,

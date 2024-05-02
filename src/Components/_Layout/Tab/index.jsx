@@ -42,7 +42,7 @@ const TabNavigation = () => {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: Colors.secondary,
-        tabBarInactiveTintColor: Colors.grey,
+        tabBarInactiveTintColor: Colors.gray,
         tabBarBackground: () => (
           <BlurView
             intensity={100}
