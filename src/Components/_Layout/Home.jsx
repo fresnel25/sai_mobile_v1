@@ -3,26 +3,25 @@ import {
   Button,
   SafeAreaView,
   Text,
+  View
 } from "react-native";
 import AuthContext from "../../Context/AuthContext";
-import { logout } from "../../Services/AuthService";
+import Colors from "../../Constants/Color";
 
 const Home = () => {
-  const { user, setUser } = useContext(AuthContext);
-  const handleLogout = async () => {
-    await logout();
-    setUser(null);
-  };
+  const { user} = useContext(AuthContext);
   return (
-    <SafeAreaView
+    <SafeAreaView style={{ flex: 1 }}>
+    <View
       style={{
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: Colors.background,
       }}
     >
       <Text>Welcome {user.name}</Text>
-      <Button title="Logout" onPress={handleLogout} />
+    </View>
     </SafeAreaView>
   );
 };
